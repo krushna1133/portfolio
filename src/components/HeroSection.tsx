@@ -90,7 +90,7 @@ const HeroSection = () => {
       {/* Foreground Content */}
       <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         {/* Background Spline 3D */}
-{/*         <div ref={splineRef} className="absolute inset-0 w-full h-full">
+        {/* <div ref={splineRef} className="absolute inset-0 w-full h-full">
           <iframe
             src="https://my.spline.design/orb-vPTY2jTUigZ49hF59d0wyxzw/"
             frameBorder="0"
