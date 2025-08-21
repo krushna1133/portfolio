@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useParams } from "react-router-dom";
 import { projects } from "@/data/projectsData";
 
@@ -40,7 +39,6 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
-=======
 import { useParams } from "react-router-dom";
 import { projects } from "@/data/projectsData";
 
@@ -82,4 +80,3 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
->>>>>>> de4262addbc4e72169f0720fccfe5dc33ce96533
