@@ -5,12 +5,12 @@ import { ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 // Project images
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project2.png";
-import project3 from "@/assets/project3.png";
-import project4 from "@/assets/project4.png";
-import project5 from "@/assets/project5.png";
-import project6 from "@/assets/project6.png";
+import project1 from "/assets/project-1.jpg";
+import project2 from "/assets/project2.png";
+import project3 from "/assets/project3.png";
+import project4 from "/assets/project4.png";
+import project5 from "/assets/project4.png";
+import project6 from "/assets/project4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -3,8 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // college images
-import college1 from "@/assets/project2.png";
-import college2 from "@/assets/gpg.png";
+import college1 from "/assets/project2.png";
+import college2 from "/assets/gpg.png";
 
 gsap.registerPlugin(ScrollTrigger);
 

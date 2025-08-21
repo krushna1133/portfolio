@@ -74,7 +74,7 @@ const Navigation = () => {
           {/* Avatar with Stars */}
           <div className="relative">
             <img
-              src="/src/assets/profile.png"
+              src="/assets/profile.png"
               alt="profile"
               onClick={handleProfileClick}
               className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-white/20 cursor-pointer hover:scale-105 transition"

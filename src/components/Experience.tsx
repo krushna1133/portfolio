@@ -1,7 +1,7 @@
 // components/ExperienceWithGallery.jsx
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import profile from "@/assets/profile.png"; // replace with real images
+import profile from "/assets/profile.png"; // replace with real images
 
 const experiences = [
   {
