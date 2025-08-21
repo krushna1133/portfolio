@@ -17,7 +17,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-
           {/* Add your project details route here */}
           <Route path="/projects/:id" element={<ProjectDetails />} />
 

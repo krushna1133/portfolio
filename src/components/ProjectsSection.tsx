@@ -1,27 +1,37 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ExternalLink, Github } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // <-- Import useNavigate
+import { ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-// Import project images
+// Project images
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project2.png";
-import project3 from "@/assets/project2.png";
-import project4 from "@/assets/project2.png";
-import project5 from "@/assets/project2.png";
-import project6 from "@/assets/project2.png";
+import project3 from "@/assets/project3.png";
+import project4 from "@/assets/project4.png";
+import project5 from "@/assets/project5.png";
+import project6 from "@/assets/project6.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProjectsSection = () => {
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
+  liveUrl: string;
+  githubUrl?: string;
+}
+
+const ProjectsSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const navigate = useNavigate(); // <-- Initialize navigate
+  const navigate = useNavigate();
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "Grainly UI/UX",
@@ -30,7 +40,6 @@ const ProjectsSection = () => {
       image: project1,
       tech: ["Figma", "Three.js", "GSAP", "WebGL"],
       liveUrl: "#",
-      githubUrl: "#",
     },
     {
       id: 2,
@@ -40,7 +49,6 @@ const ProjectsSection = () => {
       image: project2,
       tech: ["Next.js", "Stripe", "Framer", "Prisma"],
       liveUrl: "#",
-      githubUrl: "#",
     },
     {
       id: 3,
@@ -50,7 +58,6 @@ const ProjectsSection = () => {
       image: project3,
       tech: ["Vue.js", "D3.js", "Node.js", "MongoDB"],
       liveUrl: "#",
-      githubUrl: "#",
     },
     {
       id: 4,
@@ -60,7 +67,6 @@ const ProjectsSection = () => {
       image: project4,
       tech: ["React", "Spline", "GSAP", "Locomotive"],
       liveUrl: "#",
-      githubUrl: "#",
     },
     {
       id: 5,
@@ -70,7 +76,6 @@ const ProjectsSection = () => {
       image: project5,
       tech: ["React Native", "Socket.io", "Express", "PostgreSQL"],
       liveUrl: "#",
-      githubUrl: "#",
     },
     {
       id: 6,
@@ -80,7 +85,6 @@ const ProjectsSection = () => {
       image: project6,
       tech: ["Angular", "Chart.js", "WebSocket", "Redis"],
       liveUrl: "#",
-      githubUrl: "#",
     },
   ];
 
@@ -102,7 +106,7 @@ const ProjectsSection = () => {
         }
       );
 
-      // Project cards stagger animation
+      // Project cards animation
       gsap.fromTo(
         ".project-card",
         { y: 100, opacity: 0, scale: 0.8 },
@@ -119,6 +123,25 @@ const ProjectsSection = () => {
           },
         }
       );
+
+      // Horizontal scroll for mobile
+      if (
+        window.innerWidth <= 768 &&
+        containerRef.current &&
+        sectionRef.current
+      ) {
+        gsap.to(containerRef.current, {
+          x: () => -(containerRef.current!.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: 1,
+            end: () => "+=" + containerRef.current!.scrollWidth,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
     });
 
     return () => ctx.revert();
@@ -141,13 +164,12 @@ const ProjectsSection = () => {
         <div
           ref={containerRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8 place-items-center"
-          // className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8"
         >
           {projects.map((project) => (
             <div
               key={project.id}
               className="project-card glass-card p-6 rounded-2xl group hover:scale-105 transition-all duration-500 hover:shadow-2xl cursor-pointer"
-              onClick={() => navigate(`/projects/${project.id}`)} // <-- Navigate on click
+              onClick={() => navigate(`/projects/${project.id}`)}
             >
               {/* Project Image */}
               <div className="relative overflow-hidden rounded-xl mb-6">
@@ -156,26 +178,18 @@ const ProjectsSection = () => {
                   alt={project.title}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-
                 {/* Overlay with links */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                   <a
                     href={project.liveUrl}
                     className="p-3 bg-primary rounded-full hover:bg-primary/80 transition-colors"
-                    onClick={(e) => e.stopPropagation()} // Prevent navigating when clicking overlay link
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <ExternalLink
                       size={20}
                       className="text-primary-foreground"
                     />
                   </a>
-                  {/* <a 
-                    href={project.githubUrl}
-                    className="p-3 bg-secondary rounded-full hover:bg-secondary/80 transition-colors"
-                    onClick={(e) => e.stopPropagation()} // Prevent navigating when clicking overlay link
-                  >
-                    <Github size={20} className="text-secondary-foreground" />
-                  </a> */}
                 </div>
               </div>
 
@@ -184,12 +198,9 @@ const ProjectsSection = () => {
                 <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
-
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {project.description}
                 </p>
-
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, index) => (
                     <span

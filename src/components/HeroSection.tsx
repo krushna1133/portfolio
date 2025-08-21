@@ -7,9 +7,10 @@ const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
+  const splineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 1.2 });
+    const tl = gsap.timeline({ delay: 3.8 });
 
     // Initial states
     gsap.set([titleRef.current, subtitleRef.current, ctaRef.current], {
@@ -18,7 +19,7 @@ const HeroSection = () => {
       filter: "blur(10px)",
     });
 
-    // Animate elements
+    // Animate text and button
     tl.to(titleRef.current, {
       opacity: 1,
       y: 0,
@@ -47,9 +48,14 @@ const HeroSection = () => {
           ease: "power2.out",
         },
         "-=0.6"
+      )
+      .to(
+        splineRef.current,
+        { opacity: 1, x: 0, duration: 1.2, ease: "power2.out" },
+        "-=1"
       );
 
-    // Floating orb animation
+    // Floating animation for background orbs
     gsap.to(".floating-orb", {
       y: -20,
       duration: 3,
@@ -59,6 +65,11 @@ const HeroSection = () => {
       stagger: 0.5,
     });
   }, []);
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) contactSection.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
@@ -78,7 +89,19 @@ const HeroSection = () => {
 
       {/* Foreground Content */}
       <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center text-center min-h-screen space-y-8">
+        {/* Background Spline 3D */}
+        <div ref={splineRef} className="absolute inset-0 w-full h-full">
+          <iframe
+            src="https://my.spline.design/orb-vPTY2jTUigZ49hF59d0wyxzw/"
+            frameBorder="0"
+            width="100%"
+            height="100%"
+            className="w-full h-full"
+          />
+          <div className="absolute inset-0 bg-background/30 backdrop-blur-[1px]" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center text-center min-h-screen space-y-8 relative z-10">
           <h1
             ref={titleRef}
             className="text-5xl md:text-7xl font-bold leading-tight"
@@ -102,18 +125,16 @@ const HeroSection = () => {
             rel="noopener noreferrer"
           >
             <button
+              ref={ctaRef}
               className="relative flex items-center gap-3 px-6 py-3 rounded-full 
-               bg-gradient-to-r from-blue-400 to-blue-200
-               font-semibold shadow-md 
-               backdrop-blur-md border border-white/20
-               overflow-hidden transition-all duration-300
-               hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+                         bg-gradient-to-r from-blue-400 to-blue-200
+                         font-semibold shadow-md 
+                         backdrop-blur-md border border-white/20
+                         overflow-hidden transition-all duration-300
+                         hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
             >
-              {/* Neon glow effect */}
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-200 opacity-20 rounded-full blur-xl"></span>
-
-              <FaWhatsapp size={22} className="relative text-black" />
-              <span className="relative text-black">Let’s Talk</span>
+              <FaWhatsapp size={22} className="text-green-500" />
+              Let’s Talk
             </button>
           </a>
         </div>

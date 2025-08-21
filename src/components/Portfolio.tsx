@@ -9,23 +9,19 @@ import Footer from "./Footer";
 import Education from "./Education";
 import Experience from "./Experience";
 
-const Portfolio = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const Portfolio: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const handlePreloaderComplete = () => {
+  const handlePreloaderComplete = (): void => {
     setIsLoading(false);
   };
 
   useEffect(() => {
-    // Prevent scroll during loading
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    // Block scroll while loading
+    document.body.style.overflow = isLoading ? "hidden" : "unset";
 
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "unset"; // Cleanup
     };
   }, [isLoading]);
 
@@ -37,7 +33,7 @@ const Portfolio = () => {
       {/* Main Content */}
       <div
         className={`transition-opacity duration-1000 ${
-          isLoading ? "opacity-0" : "opacity-100"
+          isLoading ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
         <Navigation />
