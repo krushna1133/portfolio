@@ -63,28 +63,28 @@ const Navigation = () => {
         </div>
 
         {/* Nav Icons */}
-        <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-2">
-          <button
-            onClick={() => scrollToSection("about")}
-            className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-neutral-800/70 hover:bg-neutral-700 transition"
-          >
-            <User size={16} className="sm:size-18" />
-          </button>
+      <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-2">
+  <button
+    onClick={() => scrollToSection("about")}
+    className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 transition"
+  >
+    <User size={18} className="text-white" />
+  </button>
 
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-neutral-800/70 hover:bg-neutral-700 transition"
-          >
-            <Monitor size={16} className="sm:size-18" />
-          </button>
+  <button
+    onClick={() => scrollToSection("projects")}
+    className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 transition"
+  >
+    <Monitor size={18} className="text-white" />
+  </button>
 
-          <button
-            onClick={() => scrollToSection("experience")}
-            className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-neutral-800/70 hover:bg-neutral-700 transition"
-          >
-            <Briefcase size={16} className="sm:size-18" />
-          </button>
-        </div>
+  <button
+    onClick={() => scrollToSection("experience")}
+    className="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-neutral-700 transition"
+  >
+    <Briefcase size={18} className="text-white" />
+  </button>
+</div>
 
         {/* Divider */}
         <div className="w-px h-6 bg-white/20 hidden sm:block"></div>
