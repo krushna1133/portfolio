@@ -113,7 +113,7 @@ const AboutSection = () => {
                 {/* Profile image container */}
                 <div className="relative w-full h-full rounded-full overflow-hidden glass-card p-4 hover:scale-105 transition-transform duration-500">
                   <img
-                    src="/Profile.png"
+                    src="/assets/profile.png"
                     alt="RK - UI/UX Designer"
                     className="w-full h-full object-cover rounded-full"
                   />
