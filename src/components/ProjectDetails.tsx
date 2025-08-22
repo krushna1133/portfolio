@@ -72,7 +72,7 @@ const ProjectDetails = () => {
 
           {/* Profile image with morph effect */}
           <motion.img
-            src="/Profile.png"
+            src="/assets/profile.png"
             alt="Krushna Rathod"
             animate={{
               borderRadius: ["50%", "35%", "20%", "35%", "50%"],
@@ -140,3 +140,4 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
+
